@@ -15,11 +15,11 @@
   },
   "scripts": {
     "dev": "node color && cross-env NODE_ENV=dev webpack-dev-server --config ./webpack/webpack.config.js",
-    "test": "cross-env NODE_ENV=test webpack-dev-server",
-    "prod": "cross-env NODE_ENV=prod webpack-dev-server",
-    "build:dev": "cross-env NODE_ENV=dev webpack",
-    "build:test": "cross-env NODE_ENV=test webpack",
-    "build:prod": "node color && cross-env NODE_ENV=prod webpack",
+    "test": "cross-env NODE_ENV=test webpack-dev-server --config ./webpack/webpack.config.js",
+    "prod": "cross-env NODE_ENV=prod webpack-dev-server --config ./webpack/webpack.config.js",
+    "build:dev": "cross-env NODE_ENV=dev webpack --config ./webpack/webpack.config.js",
+    "build:test": "cross-env NODE_ENV=test webpack --config ./webpack/webpack.config.js",
+    "build:prod": "node color && cross-env NODE_ENV=prod webpack --config ./webpack/webpack.config.js",
     "componentTest": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
