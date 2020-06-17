@@ -1,0 +1,23 @@
+{
+    // 编辑器字体大小
+    "editor.fontSize": 12,
+    // 编辑器的tabSize为4
+    "editor.tabSize": 4,
+    // beautify的tabsize为4
+    "beautify.tabSize": 4,
+    // 是否启用git自动拉取
+    "git.autofetch": false,
+    // 启用启用或禁用 JavaScript 格式化程序
+    "javascript.format.enable": true,
+    // 启用或禁用默认 JSON 格式化程序
+    "json.format.enable": true,
+    //文件头部注释模板，注意该模板不可提交
+    "fileheader.customMade": {
+        "Author": "夏民喜",
+        "Date": "Do not edit",
+        "LastEditors": "夏民喜",
+        "LastEditTime": "Do not edit",
+        "Description": "请输入文件说明",
+        "FilePath": "Do not edit"
+    },
+}
