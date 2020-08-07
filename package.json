@@ -9,12 +9,13 @@
     "antd": "^4.3.1",
     "antd-theme-generator": "^1.1.7",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.13.2",
     "react-redux": "^7.2.0",
-    "react-router": "^5.2.0"
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "scripts": {
-    "dev": "node color && cross-env NODE_ENV=dev webpack-dev-server --config ./webpack/webpack.config.js",
+    "dev": "node src/themes/color.js && cross-env NODE_ENV=dev webpack-dev-server --config ./webpack/webpack.config.js",
     "test": "cross-env NODE_ENV=test webpack-dev-server --config ./webpack/webpack.config.js",
     "prod": "cross-env NODE_ENV=prod webpack-dev-server --config ./webpack/webpack.config.js",
     "build:dev": "cross-env NODE_ENV=dev webpack --config ./webpack/webpack.config.js",
