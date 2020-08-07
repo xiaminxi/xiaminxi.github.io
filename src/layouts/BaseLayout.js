@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:53:27
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 16:26:08
+ * @LastEditTime: 2020-08-07 21:36:18
  * @Description: 页面布局文件
  */
 import React, { Component } from 'react'
@@ -30,6 +30,23 @@ export default class BaseLayout extends Component {
 
         console.log(JSON.parse(localStorage.getItem("tabpaneList")))
     }
+    
+    componentDidMount() {
+        this.initPage()
+    }
+
+    // 初始化页面
+    initPage = () => {
+        const currentHistory = JSON.parse(localStorage.getItem("currentHistory") || "{}")
+        if (currentHistory.path) {
+            this.insertTabPane(currentHistory)
+
+            if(!window.location.href.includes(currentHistory.path)){
+                window.location.href = currentHistory.path
+            }
+            console.log(window.location.href)
+        }
+    }
 
     // 点击关闭标签页
     deleteTabPane = (targetKey, action) => this[action](targetKey);
@@ -41,7 +58,10 @@ export default class BaseLayout extends Component {
     }
 
     // 切换标签页
-    onChangeTabPane = activeKey => this.setState({ activeKey, TabPaneList: this.changeActive(activeKey) });
+    onChangeTabPane = activeKey => {
+        localStorage.setItem("currentHistory", JSON.stringify({ path: activeKey }))
+        this.setState({ activeKey, TabPaneList: this.changeActive(activeKey) });
+    }
 
     // 改变活动指示器
     changeActive = (targetKey) => {
@@ -54,6 +74,7 @@ export default class BaseLayout extends Component {
             }
             return item
         })
+
     }
 
     // 插入标签页
@@ -76,9 +97,10 @@ export default class BaseLayout extends Component {
                 route: <Route exact path={findRouterItem.path} component={findRouterItem.component} />
             })
             console.log(TabPaneList)
-            localStorage.setItem("tabpaneList", JSON.stringify(TabPaneList))
             this.setState({ TabPaneList: this.changeActive(findRouterItem.path), activeKey: findRouterItem.path })
         }
+        console.log(findRouterItem, 3333333333333)
+        localStorage.setItem("currentHistory", JSON.stringify({ path: findRouterItem.path }))
     }
 
     // 匹配左侧菜单路由
@@ -102,20 +124,19 @@ export default class BaseLayout extends Component {
 
     render() {
         const { activeKey = "", TabPaneList = [] } = this.state
-
+        console.log(activeKey, TabPaneList)
         return (
             <Router history={browserHistory}  >
                 <Layout>
                     <SiderMenu onMenuItemClick={this.insertTabPane} />
                     <Layout>
-                        <CommonHeader />
-                        <Content style={{ margin: 10, border: "1px solid red" }} style={{ padding: 10, background: '#fff', minHeight: 700 }}>
-                            <Cao />
+                        <CommonHeader activeKey={activeKey} />
+                        <Content style={{ margin: 10, border: "1px solid red" }} style={{ padding: 10, background: '#fff', minHeight: 795, maxHeight: 795 }}>
                             <Tabs activeKey={activeKey} type="editable-card" hideAdd={true} onEdit={this.deleteTabPane} onChange={this.onChangeTabPane}>
                                 {TabPaneList.map(item => <TabPane tab={item.tab} key={item.key} > {item.route}  </TabPane>)}
                             </Tabs>
                         </Content>
-                        <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                        {/* <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
                     </Layout>
                 </Layout>
             </Router>

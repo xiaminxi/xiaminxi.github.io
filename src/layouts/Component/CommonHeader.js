@@ -2,51 +2,64 @@
  * @Author: 夏民喜
  * @Date: 2019-09-06 03:40:21
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-06 14:05:21
+ * @LastEditTime: 2020-08-07 19:31:30
  * @Description: 请输入文件描述
  */
 import React, { Component } from 'react'
-import { Layout, Menu, Form, Row, Col, Button } from 'antd';
+import { Layout, Menu, Form, Row, Col, Button, Card, Breadcrumb } from 'antd';
+import { routerData } from '../../routes/routerConfig';
+import { Link } from 'react-router-dom';
+import CommonCard from '../../pages/Component/CommonCard';
 
 const { Header } = Layout;
 
 export default class GlobalHeader extends Component {
+    constructor(props) {
+        super(props)
 
-    clickSystem = (e) => console.log(e)
+        this.state = {
+
+        }
+    }
+
+    // 匹配左侧菜单路由
+    getrouter = (targetPath, routerData, result, parent) => {
+        for (let index = 0; index < routerData.length; index++) {
+            const routerItem = routerData[index]
+            if (routerItem.path === targetPath) {
+                result = parent
+                break
+            }
+            if (routerItem.children && routerItem.children.length) {
+                result = this.getrouter(targetPath, routerItem.children, result, routerItem)
+            }
+        }
+        console.log(result)
+        return result
+    }
+
+    // 渲染面包屑
+    renderBreadcrumb = (data = [], activeKey) => {
+        if(data instanceof Array) return <Breadcrumb.Item key={"/"} href="/">首页</Breadcrumb.Item>
+        const breadcrumbList = [
+            <Breadcrumb.Item key={"/"} href="/">首页</Breadcrumb.Item>,
+            <Breadcrumb.Item key={data.path} >{data.name}</Breadcrumb.Item>
+        ]
+        const find = data.children.find(item => item.path === activeKey)
+        breadcrumbList.push(<Breadcrumb.Item key={find.path} >{find.name}</Breadcrumb.Item>)
+        return breadcrumbList
+    }
 
     render() {
-        const { setCurrentSystem } = this.props
-
-        const menuProps = {
-            mode: "horizontal",
-            onClick: setCurrentSystem,
-            defaultSelectedKeys: ["1"],
-            style: {
-                lineHeight: '64px',
-                width: "100%"
-            }
-        }
-
-        const renderMenu = () => {
-            let menuArray = [];
-            for(let i = 0; i < 3; i++){
-                menuArray.push(  <Menu.Item key={i}>运营平台{i}</Menu.Item>)
-            }
-            return menuArray
-        }
+        const { activeKey = null } = this.props
 
         return (
-            <Header style={{ background: '#fff', padding: "0px 10px" }}>
-                <Row>
-                    <Col span={18} >
-                        <Menu {...menuProps}>
-                            {renderMenu()}
-                        </Menu>
-                    </Col>
-                    <Col span={6}>
-                        {/* <Button  type="primary" size="large" block={true} >侧翻青蛙</Button> */}
-                    </Col>
-                </Row>
+            <Header style={{ background: '#fff', padding: "0px 10px", height: 55 }}>
+                <CommonCard style={{ padding: 5, marginBottom: 10 }}>
+                    <Breadcrumb  >
+                        {activeKey ? this.renderBreadcrumb(this.getrouter(activeKey, routerData, [], []), activeKey) : <Breadcrumb.Item key={"/"} href="/">首页</Breadcrumb.Item>}
+                    </Breadcrumb>
+                </CommonCard>
             </Header>
         )
     }
