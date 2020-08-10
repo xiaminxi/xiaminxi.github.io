@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 21:40:42
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 17:58:56
+ * @LastEditTime: 2020-08-09 16:34:02
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\pages\SystemManage\ProductConfig\List.js
  */
@@ -100,7 +100,7 @@ export default class List extends Component {
         }
     }
     onFinish = values => {
-        const {  templateData = [] } = this.state
+        const { templateData = [] } = this.state
         this.setState({ dataSource: values.userName ? templateData.filter(item => item.userName === values.userName) : templateData })
         console.log(values)
     }
@@ -116,7 +116,7 @@ export default class List extends Component {
         console.log(this.props)
         const columns = [
             { title: "年龄", dataIndex: "age", key: "age" },
-            { title: "昵称", dataIndex: "userName", key: "userName" },
+            { title: "昵称", dataIndex: "userName", key: "userName", render: text => <Button size="small" type="primary">测试</Button> },
             { title: "胸围", dataIndex: "xiongwei", key: "xiongwei" },
             { title: "腰围", dataIndex: "yaowei", key: "yaowei" },
             { title: "臀围", dataIndex: "tunwei", key: "tunwei" },

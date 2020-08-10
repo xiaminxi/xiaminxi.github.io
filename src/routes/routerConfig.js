@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:50:19
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 19:30:10
+ * @LastEditTime: 2020-08-10 14:04:20
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\routes\routerConfig.js
  */
@@ -28,47 +28,22 @@ export const routerData = [
             },
             {
                 name: "合同配置",
-                path: "/SystemManage/ContractConfig",
+                path: "SystemManage/ContractConfig",
                 children: [
                     {
                         name: "菜单配置",
                         path: "/SystemManage/ContractConfig/MenuManage/List",
-                        component: getComponent("/SystemManage/ContractConfig/MenuManage/List")
+                        component: getComponent("SystemManage/ContractConfig/MenuManage/List")
                     },
                     {
-                        name: "菜单配置",
+                        name: "模板配置",
                         path: "/SystemManage/ContractConfig/TemplateManage/List",
-                        component: getComponent("/SystemManage/ContractConfig/TemplateManage/List")
+                        component: getComponent("SystemManage/ContractConfig/TemplateManage/List")
                     },
                 ]
             },
         ]
     },
-    {
-        name: "系统管理",
-        path: "SystemManage" + Math.random()
-    },
-    {
-        name: "系统管理",
-        path: "SystemManage" + Math.random()
-    },
-    {
-        name: "系统管理",
-        path: "SystemManage" + Math.random()
-    },
-    {
-        name: "系统管理",
-        path: "SystemManage" + Math.random()
-    },
-    {
-        name: "系统管理",
-        path: "SystemManage" + Math.random()
-    },
-    {
-        name: "系统管理",
-        path: "SystemManage" + Math.random()
-    },
-
 ]
 // 各位大佬， 有谁知道使用BrowserRouter 后出现内容不显示的问题吗
 // 使用HashRouter 后就没有问题
