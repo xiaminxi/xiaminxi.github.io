@@ -2,11 +2,11 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:53:27
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 21:36:18
+ * @LastEditTime: 2020-08-27 21:31:01
  * @Description: 页面布局文件
  */
 import React, { Component } from 'react'
-import { Layout, Tabs } from 'antd';
+import { Layout, Tabs, Row, Col } from 'antd';
 import SiderMenu from './Component/SiderMenu';
 import CommonHeader from './Component/CommonHeader';
 import { createBrowserHistory } from 'history'
@@ -30,7 +30,7 @@ export default class BaseLayout extends Component {
 
         console.log(JSON.parse(localStorage.getItem("tabpaneList")))
     }
-    
+
     componentDidMount() {
         this.initPage()
     }
@@ -41,7 +41,7 @@ export default class BaseLayout extends Component {
         if (currentHistory.path) {
             this.insertTabPane(currentHistory)
 
-            if(!window.location.href.includes(currentHistory.path)){
+            if (!window.location.href.includes(currentHistory.path)) {
                 window.location.href = currentHistory.path
             }
             console.log(window.location.href)
@@ -127,16 +127,16 @@ export default class BaseLayout extends Component {
         console.log(activeKey, TabPaneList)
         return (
             <Router history={browserHistory}  >
-                <Layout>
+                <Layout style={{ width: "100%" }}>
                     <SiderMenu onMenuItemClick={this.insertTabPane} />
                     <Layout>
                         <CommonHeader activeKey={activeKey} />
-                        <Content style={{ margin: 10, border: "1px solid red" }} style={{ padding: 10, background: '#fff', minHeight: 795, maxHeight: 795 }}>
+                        <Content className="scroll-container">
                             <Tabs activeKey={activeKey} type="editable-card" hideAdd={true} onEdit={this.deleteTabPane} onChange={this.onChangeTabPane}>
                                 {TabPaneList.map(item => <TabPane tab={item.tab} key={item.key} > {item.route}  </TabPane>)}
                             </Tabs>
                         </Content>
-                        {/* <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
+                        <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer>
                     </Layout>
                 </Layout>
             </Router>

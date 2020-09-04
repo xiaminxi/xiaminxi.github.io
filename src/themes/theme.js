@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2019-10-12 17:42:53
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-06-05 18:13:17
+ * @LastEditTime: 2020-08-27 15:24:42
  * @Description: 主题功能文件
  */
 
@@ -18,6 +18,7 @@ export const colorList = [
 ]
 
 export const changeTheme = (color) => {
+    console.log("点击更换主题：", color)
     localStorage.setItem("theme", color);
     window.less
         .modifyVars({

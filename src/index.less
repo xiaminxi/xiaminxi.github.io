@@ -1,0 +1,47 @@
+:global {
+
+    .scroll-container {
+        padding         : 10px;
+        min-height      : 812px;
+        max-height      : 812px;
+        overflow-x      : hidden;
+        background-color: #ffffff;
+        overflow-wrap   : break-word;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .common-table {
+        background-color: #fff !important;
+
+        .ant-table-tbody>tr {
+            transition: all 0s;
+
+            &:hover {
+                transition      : all 0s;
+                background-color: rgb(180, 231, 253) !important;
+            }
+        }
+
+        .ant-table-tbody>tr>td {
+            color           : #333333;
+            transition      : all 0s;
+            background-color: inherit !important;
+        }
+
+        .selceted-tr {
+            background-color: #40a9ff !important;
+        }
+
+        .odd-tr {
+            background-color: #ffadd2 !important; 
+        }
+
+        .even-tr{
+            background-color: #ffd591 !important;
+        }
+    }
+
+}
