@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 21:40:42
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-09-02 18:26:51
+ * @LastEditTime: 2020-09-18 23:16:53
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\pages\SystemManage\ProductConfig\List.js
  */
@@ -25,7 +25,17 @@ export default class List extends Component {
     }
 
     render() {
+        const debounce = (cb, times = 300) => {
+            let timer =null
+            return (curr) => {
+                clearTimeout(timer)
+                timer = setTimeout(cb, times, curr.target.value);
+            }
+        }
 
+        const setVal = (e) => {
+            console.log(e)
+        }
         const pageProps = {
             pageInit: {
                 // 单选模式
@@ -73,7 +83,7 @@ export default class List extends Component {
             },
             FormItemList: [
                 <Form.Item label="菜单名称" name="menuName" key="menuName"  >
-                    <Input />
+                    <Input onChange={debounce(setVal, 3000)} />
                 </Form.Item>,
                 <Form.Item label="上级菜单" name="parentName" key="parentName"  >
                     <Input />

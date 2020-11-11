@@ -2,18 +2,22 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:55:59
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 13:16:40
+ * @LastEditTime: 2020-11-11 10:40:50
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\layouts\Component\SiderMenu.js
  */
 
 import React, { Component } from 'react';
+// import * as React from 'react';
+
 import { Layout, Menu } from 'antd';
 // import logo from '../../../public/logo192.png';
 import { isUrl } from '../../utils/utils';
 import { routerData } from '../../routes/routerConfig';
 import { Link, NavLink, Route } from "react-router-dom"
 // import Icon, { CodeFilled, SmileOutlined, SmileTwoTone } from '@ant-design/icons';
+// import { createFromIconfontCN } from '@ant-design/icons';
+// import { SmileOutline } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -30,6 +34,14 @@ export default class SiderMenu extends Component {
     render() {
         const { collapsed } = this.state;
         const { onMenuItemClick } = this.props
+
+        // const IconFont = createFromIconfontCN({
+        //     scriptUrl: [
+        //       '//at.alicdn.com/t/font_1788044_0dwu4guekcwr.js', // icon-javascript, icon-java, icon-shoppingcart (overrided)
+        //       '//at.alicdn.com/t/font_1788592_a5xf2bdic3u.js', // icon-shoppingcart, icon-python
+        //     ],
+        //   });
+
         const siderProps = {
             theme: "light",
             collapsible: true,

@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-05-22 18:03:43
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-06 13:40:19
+ * @LastEditTime: 2020-11-11 10:34:53
  * @Description: webpack loader配置文件
  * @FilePath: \xiaminxi.github.io\webpack\config\rules.js
  */

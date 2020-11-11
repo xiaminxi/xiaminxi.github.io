@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-05-22 17:38:31
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 15:47:55
+ * @LastEditTime: 2020-11-10 23:50:31
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\index.js
  */
@@ -23,7 +23,7 @@ function Cao(props) {
         }
     ]
 
-    changeTheme(localStorage.getItem("theme")|| "#000")
+    // changeTheme(localStorage.getItem("theme")|| "#000")
 
 
     return (

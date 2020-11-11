@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-27 15:15:55
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-27 17:34:43
+ * @LastEditTime: 2020-10-13 10:44:05
  * @Description: 请求服务配置文件
  */
 import Axios from 'axios';
@@ -21,6 +21,7 @@ const axios = Axios.create({
 // 添加请求拦截
 axios.interceptors.request.use(
     config => {
+        console.log(cookie.get('token'))
         const token = cookie.get("token")
         token ? cookie.set('token', token, 2 / 24) : null
         const userInfo = cookie.get("userInfo")

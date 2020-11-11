@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-07 16:51:23
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-09-02 18:27:41
+ * @LastEditTime: 2020-11-10 21:37:27
  * @Description: 请输入文件说明
  */
 import { Table, Button } from 'antd'
@@ -216,6 +216,7 @@ export default class CommonTable extends react.Component {
                 )
             } : null,
             rowClassName: (record, index) => {
+                return ""
                 return keys.includes(index) ? 'selceted-tr' : index % 2 === 0 ? "odd-tr" : "even-tr"
             }
         }
