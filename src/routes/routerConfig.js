@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:50:19
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-11 14:54:19
+ * @LastEditTime: 2020-11-11 22:42:48
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\routes\routerConfig.js
  */
@@ -11,7 +11,7 @@ import getComponent from "./AsyncComponent"
 const router = [
     {
         name: "找不到页面",
-        path: "/404"
+        path: "Result/404"
     },
     {
         name: "系统管理",
@@ -31,6 +31,22 @@ const router = [
                     {
                         name: "项目配置-3",
                         path: "Contract/List"
+                    },
+                    {
+                        name: "测试层级1",
+                        path: "qwer",
+                        children: [
+                            {
+                                name: "测试层级2",
+                                path: "qwerq",
+                                children: [
+                                    {
+                                        name: "到底了",
+                                        path: "qwerqwer/List"
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             },

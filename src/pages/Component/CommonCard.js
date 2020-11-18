@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-07 17:27:56
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-08-07 18:37:51
+ * @LastEditTime: 2020-11-11 22:49:35
  * @Description: 请输入文件说明
  */
 import React from 'react'
@@ -11,7 +11,7 @@ import { Card } from 'antd'
 
 function CommonCard(props) {
     return (
-        <Card bodyStyle={{ padding: 5 }} style={props.style || { padding: 10, marginBottom: 10 }} >
+        <Card bodyStyle={{ padding: 5, ...props.bodyStyle }} style={props.style || { padding: 10, marginBottom: 10 }} >
             {props.children}
         </Card>
     )

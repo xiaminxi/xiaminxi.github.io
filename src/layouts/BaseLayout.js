@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:53:27
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-11 14:55:55
+ * @LastEditTime: 2020-11-11 23:50:28
  * @Description: 页面布局文件
  */
 import React, { Component } from 'react'
@@ -62,7 +62,7 @@ export default class BaseLayout extends Component {
             item = TabPaneListResult.length > 0 ? TabPaneListResult.find(item => item.key === activeKey) : { title: "首页", key: "/" }
         }
         // () => this.setState({ TabPaneList: this.changeActive(activeKey) })
-        this.setState({ TabPaneList: TabPaneListResult }, () => this.changeActive(item))
+        this.setState({ TabPaneList: TabPaneListResult }, () => console.log(this.props))
     }
 
     // 切换标签页
@@ -145,7 +145,7 @@ export default class BaseLayout extends Component {
                                 {TabPaneList.map(item => <TabPane tab={item.tab} key={item.key} > {item.route}  </TabPane>)}
                             </Tabs>
                         </Content>
-                        <Cao/>
+                        {/* <Cao/> */}
                         <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer>
                     </Layout>
                 </Layout>
