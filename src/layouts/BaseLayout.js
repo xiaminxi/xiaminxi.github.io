@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:53:27
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-11 23:50:28
+ * @LastEditTime: 2020-11-21 03:32:48
  * @Description: 页面布局文件
  */
 import React, { Component } from 'react'
@@ -53,16 +53,21 @@ export default class BaseLayout extends Component {
 
     // 关闭标签页
     remove = targetKey => {
+        let currentTabIndex = undefined;
         let { TabPaneList = [], activeKey } = this.state
-        const TabPaneListResult = TabPaneList.filter(item => item.key !== targetKey)
-        let item = null
-        if (targetKey === activeKey && TabPaneListResult.length > 0) {
-            item = TabPaneListResult[TabPaneListResult.length - 1]
-        } else {
-            item = TabPaneListResult.length > 0 ? TabPaneListResult.find(item => item.key === activeKey) : { title: "首页", key: "/" }
+        for (let index = 0; index < TabPaneList.length; index++) {
+            if (TabPaneList[index].key === targetKey) {
+                currentTabIndex = index
+            }
         }
-        // () => this.setState({ TabPaneList: this.changeActive(activeKey) })
-        this.setState({ TabPaneList: TabPaneListResult }, () => console.log(this.props))
+        const TabPaneListResult = TabPaneList.filter(item => item.key !== targetKey)
+        const currentTab =
+            (currentTabIndex === TabPaneList.length - 1 && TabPaneListResult.length === 0) ?
+                { title: "首页", key: "/" } :
+                TabPaneListResult.length > 0 ?
+                    TabPaneListResult[TabPaneListResult.length - 1] :
+                    TabPaneList[currentTabIndex + 1]
+        this.setState({ activeKey: currentTab.key, TabPaneList: TabPaneListResult }, () => this.props.history.replace(currentTab.key))
     }
 
     // 切换标签页
@@ -135,21 +140,19 @@ export default class BaseLayout extends Component {
         const { activeKey = "", TabPaneList = [] } = this.state
         console.log(activeKey, TabPaneList)
         return (
-            <Router history={browserHistory}  >
-                <Layout style={{ width: "100%" }}>
-                    <SiderMenu onMenuItemClick={this.insertTabPane} />
-                    <Layout>
-                        <CommonHeader activeKey={activeKey} />
-                        <Content className="scroll-container">
-                            <Tabs activeKey={activeKey} type="editable-card" hideAdd={true} onEdit={this.deleteTabPane} onChange={this.onChangeTabPane}>
-                                {TabPaneList.map(item => <TabPane tab={item.tab} key={item.key} > {item.route}  </TabPane>)}
-                            </Tabs>
-                        </Content>
-                        {/* <Cao/> */}
-                        <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer>
-                    </Layout>
+            <Layout style={{ width: "100%" }}>
+                <SiderMenu onMenuItemClick={this.insertTabPane} />
+                <Layout>
+                    <CommonHeader activeKey={activeKey} />
+                    <Content className="scroll-container">
+                        <Tabs activeKey={activeKey} type="editable-card" hideAdd={true} onEdit={this.deleteTabPane} onChange={this.onChangeTabPane}>
+                            {TabPaneList.map(item => <TabPane tab={item.tab} key={item.key} > {item.route}  </TabPane>)}
+                        </Tabs>
+                    </Content>
+                    {/* <Cao/> */}
+                    <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
-            </Router>
+            </Layout>
 
         )
     }
