@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:53:27
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-21 03:32:48
+ * @LastEditTime: 2020-11-21 12:35:17
  * @Description: 页面布局文件
  */
 import React, { Component } from 'react'
@@ -33,6 +33,8 @@ export default class BaseLayout extends Component {
 
     componentDidMount() {
         this.initPage()
+        console.log(this.props)
+        this.props.history.listen(route => this.setState({ activeKey: route.pathname }));
     }
 
     // 初始化页面
@@ -139,6 +141,8 @@ export default class BaseLayout extends Component {
     render() {
         const { activeKey = "", TabPaneList = [] } = this.state
         console.log(activeKey, TabPaneList)
+      
+        
         return (
             <Layout style={{ width: "100%" }}>
                 <SiderMenu onMenuItemClick={this.insertTabPane} />
