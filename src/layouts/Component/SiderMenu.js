@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:55:59
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-11 10:40:50
+ * @LastEditTime: 2020-11-27 22:00:24
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\layouts\Component\SiderMenu.js
  */
@@ -31,8 +31,22 @@ export default class SiderMenu extends Component {
         }
     }
 
+    componentDidMount() {
+       
+    }
+
+    // 展开收起菜单
+    onCollapse = (collapsed, type) => this.setState({ collapsed: collapsed })
+
+    // 打开收起菜单项
+    onOpenChange = (keys) => {
+        const { openMenuKeys = []} = this.state
+        const latestOpenKey = keys.find(key => openMenuKeys.indexOf(key) === -1);
+        this.setState({openMenuKeys: latestOpenKey ? keys.filter(item => latestOpenKey.indexOf(item) !== -1) :[]})
+    }
+
     render() {
-        const { collapsed } = this.state;
+        const { collapsed, openMenuKeys = [] } = this.state;
         const { onMenuItemClick } = this.props
 
         // const IconFont = createFromIconfontCN({
@@ -43,15 +57,20 @@ export default class SiderMenu extends Component {
         //   });
 
         const siderProps = {
-            theme: "light",
+            theme: "dark",
             collapsible: true,
             collapsed: collapsed,
-            onCollapse: this.collapse,
+
+            onCollapse: this.onCollapse,
         }
 
         const menuProps = {
+            multiple: false,
             mode: "inline",
-            onOpenChange: this.expandMenu,
+            // mode:"inline",
+            theme:"dark",
+            onOpenChange: this.onOpenChange,
+            openKeys: openMenuKeys
         }
 
         const SubMenuProps = (item) => {
@@ -66,7 +85,7 @@ export default class SiderMenu extends Component {
             if (item.children) {
                 return <SubMenu {...SubMenuProps(item)}>{renderMenu(item.children)}</SubMenu>
             }
-            return <MenuItem key={item.path} onClick={() => onMenuItemClick(item)} ><Link to={item.path}>{item.name}</Link></MenuItem>
+            return !item.hidden && <MenuItem key={item.path} onClick={() => onMenuItemClick(item)} ><Link to={item.path}>{item.name}</Link></MenuItem>
         });
 
         return (

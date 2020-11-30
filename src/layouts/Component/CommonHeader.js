@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2019-09-06 03:40:21
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-11 23:02:02
+ * @LastEditTime: 2020-11-27 22:05:10
  * @Description: 请输入文件描述
  */
 import React, { Component } from 'react'
@@ -57,23 +57,23 @@ export default class GlobalHeader extends Component {
         const { activeKey = null } = this.props
         const menu = (
             <Menu>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-                  1st menu item
+                <Menu.Item>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                        1st menu item
                 </a>
-              </Menu.Item>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-                  2nd menu item
+                </Menu.Item>
+                <Menu.Item>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+                        2nd menu item
                 </a>
-              </Menu.Item>
-              <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-                  3rd menu item
+                </Menu.Item>
+                <Menu.Item>
+                    <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+                        3rd menu item
                 </a>
-              </Menu.Item>
+                </Menu.Item>
             </Menu>
-          );
+        );
 
         return (
             <Header style={{ background: '#fff', padding: "0px 10px", height: 50 }}>
@@ -88,11 +88,11 @@ export default class GlobalHeader extends Component {
                             <Input.Search />
                         </Col>
                         <Col span={4}>
-
+                            <div style={{textAlign: "center"}}>欢迎使用华兴金融服务系统</div>
                         </Col>
                         <Col span={4}>
                             <div >
-                                <div style={{ float: "right" ,paddingRight: 20}} >
+                                <div style={{ float: "right", paddingRight: 20 }} >
                                     <Dropdown overlay={menu}>
                                         <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                                     </Dropdown>

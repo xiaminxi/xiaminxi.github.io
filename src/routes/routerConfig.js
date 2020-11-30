@@ -2,13 +2,34 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:50:19
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-11 22:42:48
+ * @LastEditTime: 2020-11-27 21:58:00
  * @Description: 请输入文件说明
  * @FilePath: \xiaminxi.github.io\src\routes\routerConfig.js
  */
 
 import getComponent from "./AsyncComponent"
 const router = [
+    {
+        name: "首页",
+        hidden: true,
+        path: "HomePage/index",
+    },
+    {
+        name: "产品页",
+        path: "productManage",
+        children: [
+            {
+                name: "模板配置",
+                path: "productTemplate/index",
+                icon: "eqwrwe",
+            },
+            {
+                name: "合同配置",
+                path: "productContcar/index",
+                icon: "eqwrwe",
+            },
+        ]
+    },
     {
         name: "找不到页面",
         path: "Result/404"

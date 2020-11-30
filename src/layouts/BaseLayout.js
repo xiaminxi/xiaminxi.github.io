@@ -2,7 +2,7 @@
  * @Author: 夏民喜
  * @Date: 2020-08-05 20:53:27
  * @LastEditors: 夏民喜
- * @LastEditTime: 2020-11-21 12:35:17
+ * @LastEditTime: 2020-11-27 22:04:52
  * @Description: 页面布局文件
  */
 import React, { Component } from 'react'
@@ -32,9 +32,12 @@ export default class BaseLayout extends Component {
     }
 
     componentDidMount() {
-        this.initPage()
+        // this.initPage()
         console.log(this.props)
-        this.props.history.listen(route => this.setState({ activeKey: route.pathname }));
+    }
+    componentWillReceiveProps(props, state) {
+        this.changeActive(props.location.pathname)
+        // this.setState({activeKey: props.location.pathname})
     }
 
     // 初始化页面
@@ -81,6 +84,7 @@ export default class BaseLayout extends Component {
     // 改变活动指示器
     changeActive = (targetKey) => {
         const { TabPaneList = [] } = this.state
+        this.setState({activeKey: targetKey})
         return TabPaneList.map(item => {
             if (item.key === targetKey) {
                 item.tab = <Link style={{ color: localStorage.getItem("theme") || "#1890ff" }} to={item.key} >{item.title}</Link>
@@ -89,7 +93,6 @@ export default class BaseLayout extends Component {
             }
             return item
         })
-
     }
 
     // 插入标签页
@@ -144,6 +147,7 @@ export default class BaseLayout extends Component {
       
         
         return (
+            <Router history={browserHistory} >
             <Layout style={{ width: "100%" }}>
                 <SiderMenu onMenuItemClick={this.insertTabPane} />
                 <Layout>
@@ -153,10 +157,10 @@ export default class BaseLayout extends Component {
                             {TabPaneList.map(item => <TabPane tab={item.tab} key={item.key} > {item.route}  </TabPane>)}
                         </Tabs>
                     </Content>
-                    {/* <Cao/> */}
                     <Footer style={{ textAlign: 'center', background: '#fff' }}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
             </Layout>
+            </Router>
 
         )
     }
